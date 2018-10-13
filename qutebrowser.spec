@@ -1,12 +1,12 @@
 %define		qtver	5.7.1
 Summary:	A keyboard-driven, vim-like browser based on PyQt5
 Name:		qutebrowser
-Version:	1.5.0
+Version:	1.5.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Networking
 Source0:	https://github.com/qutebrowser/qutebrowser/archive/v%{version}.tar.gz
-# Source0-md5:	23d33db8436b439c33a78a25fdee53fb
+# Source0-md5:	c32578e1e95ac29a485929b17acd7344
 URL:		https://www.qutebrowser.org/
 BuildRequires:	asciidoc
 BuildRequires:	python3 >= 3.6
