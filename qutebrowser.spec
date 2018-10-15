@@ -2,7 +2,7 @@
 Summary:	A keyboard-driven, vim-like browser based on PyQt5
 Name:		qutebrowser
 Version:	1.5.1
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		X11/Applications/Networking
 Source0:	https://github.com/qutebrowser/qutebrowser/archive/v%{version}.tar.gz
@@ -42,6 +42,8 @@ grep -r '#!.*env python' -l . | xargs %{__sed} -i -e '1 s,#!.*env python.*,#!%{_
 
 %build
 %py3_build
+
+%{__python3} scripts/asciidoc2html.py
 
 %install
 rm -rf $RPM_BUILD_ROOT
