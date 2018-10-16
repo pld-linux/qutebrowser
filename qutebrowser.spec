@@ -26,6 +26,7 @@ Requires:	python3-attrs
 Requires:	python3-jinja2
 Requires:	python3-pyPEG2
 Requires:	python3-pygments
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
