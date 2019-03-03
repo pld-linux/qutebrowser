@@ -16,6 +16,7 @@ BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	Qt5Core >= %{qtver}
 Requires:	Qt5OpenGL >= %{qtver}
 Requires:	Qt5Sql >= %{qtver}
+Requires:	Qt5Sql-sqldriver-sqlite3 >= %{qtver}
 Requires:	Qt5WebEngine >= %{qtver}
 Requires:	bash
 Requires:	hicolor-icon-theme
