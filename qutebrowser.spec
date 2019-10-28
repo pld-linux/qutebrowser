@@ -2,7 +2,7 @@
 Summary:	A keyboard-driven, vim-like browser based on PyQt5
 Name:		qutebrowser
 Version:	1.8.0
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		X11/Applications/Networking
 Source0:	https://github.com/qutebrowser/qutebrowser/archive/v%{version}.tar.gz
