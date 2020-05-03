@@ -22,6 +22,7 @@ Requires:	bash
 Requires:	hicolor-icon-theme
 Requires:	python3 >= 3.6
 Requires:	python3-PyQt5 >= 5.7.0
+Requires:	python3-PyQtWebEngine
 Requires:	python3-PyYAML
 Requires:	python3-attrs
 Requires:	python3-jinja2
