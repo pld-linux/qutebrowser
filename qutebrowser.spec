@@ -36,6 +36,14 @@ based on Python, PyQt5 and QtWebEngine and free software, licensed
 under the GPL. It was inspired by other browsers/addons like dwb and
 Vimperator/Pentadactyl.
 
+%package userscripts
+Summary:	User scripts for qutebrowser
+Group:		X11/Applications/Networking
+Requires:	%{name} = %{version}-%{release}
+
+%description userscripts
+User scripts for qutebrowser.
+
 %prep
 %setup -q
 
@@ -82,5 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/qutebrowser/scripts/*.js
 %attr(755,root,root) %{_datadir}/qutebrowser/scripts/*.py
 %attr(755,root,root) %{_datadir}/qutebrowser/scripts/*.sh
+
+%files userscripts
+%defattr(644,root,root,755)
 %dir %{_datadir}/qutebrowser/userscripts
 %attr(755,root,root) %{_datadir}/qutebrowser/userscripts/*
