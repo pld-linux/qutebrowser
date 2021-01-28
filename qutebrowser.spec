@@ -1,15 +1,15 @@
-%define		qtver	5.7.1
+%define		qtver	5.12
 Summary:	A keyboard-driven, vim-like browser based on PyQt5
 Name:		qutebrowser
-Version:	1.14.1
+Version:	2.0.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Networking
 Source0:	https://github.com/qutebrowser/qutebrowser/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	b39365ae9aeebb2b2f35f8d189cd7d5f
+# Source0-md5:	b3745e7bdfe33eb6eb06bae72b5fb7b7
 URL:		https://www.qutebrowser.org/
 BuildRequires:	asciidoc
-BuildRequires:	python3 >= 3.6
+BuildRequires:	python3 >= 1:3.6.1
 BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
@@ -20,14 +20,12 @@ Requires:	Qt5Sql-sqldriver-sqlite3 >= %{qtver}
 Requires:	Qt5WebEngine >= %{qtver}
 Requires:	bash
 Requires:	hicolor-icon-theme
-Requires:	python3 >= 3.6
-Requires:	python3-PyQt5 >= 5.7.0
+Requires:	python3 >= 1:3.6.1
+Requires:	python3-PyQt5 >= 5.12.0
 Requires:	python3-PyQtWebEngine
 Requires:	python3-PyYAML
-Requires:	python3-attrs
 Requires:	python3-jinja2
-Requires:	python3-pyPEG2
-Requires:	python3-pygments
+Suggests:	python3-pygments
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
