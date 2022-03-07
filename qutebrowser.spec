@@ -30,6 +30,7 @@ Requires:	python3 >= 1:3.6.1
 Requires:	python3-PyQt5 >= 5.12.0
 Requires:	python3-PyQtWebEngine
 Requires:	python3-PyYAML
+Requires:	python3-devel-tools
 Requires:	python3-jinja2
 Suggests:	python3-adblock
 Suggests:	python3-pygments
