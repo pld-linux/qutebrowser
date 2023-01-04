@@ -1,6 +1,6 @@
 # qt6-v2 branch
-%define		gitref	d9a46b1a62792b3f74e428bbde852209328f1e8d
-%define		snap	20221029
+%define		gitref	5ea48c6e781e47708d83c8b26fe79ca4a3752357
+%define		snap	20221216
 %define		qtver	6
 Summary:	A keyboard-driven, vim-like browser based on PyQt6
 Name:		qutebrowser
@@ -9,7 +9,7 @@ Release:	0.%{snap}.qt6.1
 License:	GPL v3+
 Group:		X11/Applications/Networking
 Source0:	https://github.com/qutebrowser/qutebrowser/archive/%{gitref}/%{name}-qt6-%{snap}.tar.gz
-# Source0-md5:	6623fe30e9e3468ec71ce662905e5881
+# Source0-md5:	569b4fe7d62363e54ea087c5018e90e9
 URL:		https://www.qutebrowser.org/
 BuildRequires:	asciidoc
 BuildRequires:	python3 >= 1:3.6.1
