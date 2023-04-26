@@ -1,15 +1,15 @@
 # qt6-v2 branch
-%define		gitref	5ea48c6e781e47708d83c8b26fe79ca4a3752357
-%define		snap	20221216
+%define		gitref	346a39ba14bdc05ce21dc1233027803dcaf34cc6
+%define		snap	20230424
 %define		qtver	6
 Summary:	A keyboard-driven, vim-like browser based on PyQt6
 Name:		qutebrowser
-Version:	2.5.2
+Version:	2.5.4
 Release:	0.%{snap}.qt6.1
 License:	GPL v3+
 Group:		X11/Applications/Networking
 Source0:	https://github.com/qutebrowser/qutebrowser/archive/%{gitref}/%{name}-qt6-%{snap}.tar.gz
-# Source0-md5:	569b4fe7d62363e54ea087c5018e90e9
+# Source0-md5:	86504e8796b055bdafc1ea2772f9e607
 URL:		https://www.qutebrowser.org/
 BuildRequires:	asciidoc
 BuildRequires:	python3 >= 1:3.6.1
@@ -246,6 +246,8 @@ qutebrowser userscript: Views the current web page in mpv.
 grep -r '#!.*env bash' -l . | xargs %{__sed} -i -e '1 s,#!.*env bash.*,#!/bin/bash,'
 grep -r '#!.*env python' -l . | xargs %{__sed} -i -e '1 s,#!.*env python.*,#!%{__python3},'
 grep -r '#!.*env node' -l . | xargs %{__sed} -i -e '1 s,#!.*env node.*,#!/usr/bin/node,'
+
+sed -i 's/_DEFAULT_WRAPPER = "PyQt5"/_DEFAULT_WRAPPER = "PyQt6"/' qutebrowser/qt/machinery.py
 
 %build
 %py3_build
