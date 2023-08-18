@@ -1,18 +1,15 @@
-# qt6-v2 branch
-%define		gitref	346a39ba14bdc05ce21dc1233027803dcaf34cc6
-%define		snap	20230424
 %define		qtver	6
+
 Summary:	A keyboard-driven, vim-like browser based on PyQt6
 Name:		qutebrowser
-Version:	2.5.4
-Release:	0.%{snap}.qt6.1
+Version:	3.0.0
+Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Networking
-Source0:	https://github.com/qutebrowser/qutebrowser/archive/%{gitref}/%{name}-qt6-%{snap}.tar.gz
-# Source0-md5:	86504e8796b055bdafc1ea2772f9e607
+Source0:	https://github.com/qutebrowser/qutebrowser/releases/download/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	c0b12de78957259cd6ee120650d9c905
 URL:		https://www.qutebrowser.org/
-BuildRequires:	asciidoc
-BuildRequires:	python3 >= 1:3.6.1
+BuildRequires:	python3 >= 1:3.8.0
 BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
@@ -29,7 +26,8 @@ Requires:	Qt6WebEngine >= %{qtver}
 Requires:	Qt6Widgets >= %{qtver}
 Requires:	bash
 Requires:	hicolor-icon-theme
-Requires:	python3 >= 1:3.6.1
+Requires:	python3 >= 1:3.8.0
+Requires:	python3-modules >= 1:3.8.0
 Requires:	python3-PyQt6
 Requires:	python3-PyQt6-WebEngine
 Requires:	python3-PyYAML
@@ -241,18 +239,14 @@ Requires:	mpv
 qutebrowser userscript: Views the current web page in mpv.
 
 %prep
-%setup -q -n %{name}-%{gitref}
+%setup -q
 
 grep -r '#!.*env bash' -l . | xargs %{__sed} -i -e '1 s,#!.*env bash.*,#!/bin/bash,'
 grep -r '#!.*env python' -l . | xargs %{__sed} -i -e '1 s,#!.*env python.*,#!%{__python3},'
 grep -r '#!.*env node' -l . | xargs %{__sed} -i -e '1 s,#!.*env node.*,#!/usr/bin/node,'
 
-sed -i 's/_DEFAULT_WRAPPER = "PyQt5"/_DEFAULT_WRAPPER = "PyQt6"/' qutebrowser/qt/machinery.py
-
 %build
 %py3_build
-
-%{__python3} scripts/asciidoc2html.py
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -261,6 +255,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} -f misc/Makefile install PYTHON=/bin/true DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix}
 
+# requires unpackaged 1password-cli (https://developer.1password.com/docs/cli/)
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/qutebrowser/userscripts/qute-1pass
 # requires unpackaged castnow (https://github.com/xat/castnow)
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/qutebrowser/userscripts/cast
 # requires unpackaged Bitwarden CLI (https://bitwarden.com/help/cli/)
