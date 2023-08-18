@@ -1,34 +1,35 @@
-%define		qtver	5.12.1
-Summary:	A keyboard-driven, vim-like browser based on PyQt5
+%define		qtver	6
+
+Summary:	A keyboard-driven, vim-like browser based on PyQt6
 Name:		qutebrowser
-Version:	2.5.3
+Version:	3.0.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Networking
-Source0:	https://github.com/qutebrowser/qutebrowser/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	116794656870d027697996b4f1035592
+Source0:	https://github.com/qutebrowser/qutebrowser/releases/download/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	c0b12de78957259cd6ee120650d9c905
 URL:		https://www.qutebrowser.org/
-BuildRequires:	asciidoc
-BuildRequires:	python3 >= 1:3.6.1
+BuildRequires:	python3 >= 1:3.8.0
 BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	Qt5Core >= %{qtver}
-Requires:	Qt5DBus >= %{qtver}
-Requires:	Qt5Gui >= %{qtver}
-Requires:	Qt5Network >= %{qtver}
-Requires:	Qt5OpenGL >= %{qtver}
-Requires:	Qt5PrintSupport >= %{qtver}
-Requires:	Qt5Qml >= %{qtver}
-Requires:	Qt5Sql >= %{qtver}
-Requires:	Qt5Sql-sqldriver-sqlite3 >= %{qtver}
-Requires:	Qt5WebEngine >= %{qtver}
-Requires:	Qt5Widgets >= %{qtver}
+Requires:	Qt6Core >= %{qtver}
+Requires:	Qt6DBus >= %{qtver}
+Requires:	Qt6Gui >= %{qtver}
+Requires:	Qt6Network >= %{qtver}
+Requires:	Qt6OpenGL >= %{qtver}
+Requires:	Qt6PrintSupport >= %{qtver}
+Requires:	Qt6Qml >= %{qtver}
+Requires:	Qt6Sql >= %{qtver}
+Requires:	Qt6Sql-sqldriver-sqlite3 >= %{qtver}
+Requires:	Qt6WebEngine >= %{qtver}
+Requires:	Qt6Widgets >= %{qtver}
 Requires:	bash
 Requires:	hicolor-icon-theme
-Requires:	python3 >= 1:3.6.1
-Requires:	python3-PyQt5 >= 5.12.0
-Requires:	python3-PyQtWebEngine
+Requires:	python3 >= 1:3.8.0
+Requires:	python3-modules >= 1:3.8.0
+Requires:	python3-PyQt6
+Requires:	python3-PyQt6-WebEngine
 Requires:	python3-PyYAML
 Requires:	python3-devel-tools
 Requires:	python3-jinja2
@@ -40,7 +41,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 qutebrowser is a keyboard-focused browser with a minimal GUI. It's
-based on Python, PyQt5 and QtWebEngine and free software, licensed
+based on Python, PyQt6 and QtWebEngine and free software, licensed
 under the GPL. It was inspired by other browsers/addons like dwb and
 Vimperator/Pentadactyl.
 
@@ -48,7 +49,7 @@ Vimperator/Pentadactyl.
 Summary:	qutebrowser userscript: Create bookmarks in Nextcloud's Bookmarks app
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
-Requires:	python3-PyQt5
+Requires:	python3-PyQt6
 Requires:	python3-modules
 Requires:	python3-requests
 
@@ -59,7 +60,7 @@ qutebrowser userscript: Create bookmarks in Nextcloud's Bookmarks app.
 Summary:	qutebrowser userscript: Add recipes to Nextcloud's Cookbook app
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
-Requires:	python3-PyQt5
+Requires:	python3-PyQt6
 Requires:	python3-modules
 Requires:	python3-requests
 
@@ -247,8 +248,6 @@ grep -r '#!.*env node' -l . | xargs %{__sed} -i -e '1 s,#!.*env node.*,#!/usr/bi
 %build
 %py3_build
 
-%{__python3} scripts/asciidoc2html.py
-
 %install
 rm -rf $RPM_BUILD_ROOT
 
@@ -256,6 +255,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} -f misc/Makefile install PYTHON=/bin/true DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix}
 
+# requires unpackaged 1password-cli (https://developer.1password.com/docs/cli/)
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/qutebrowser/userscripts/qute-1pass
 # requires unpackaged castnow (https://github.com/xat/castnow)
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/qutebrowser/userscripts/cast
 # requires unpackaged Bitwarden CLI (https://bitwarden.com/help/cli/)
