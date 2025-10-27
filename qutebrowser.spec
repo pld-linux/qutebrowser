@@ -3,11 +3,12 @@
 Summary:	A keyboard-driven, vim-like browser based on PyQt6
 Name:		qutebrowser
 Version:	3.6.0
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		X11/Applications/Networking
 Source0:	https://github.com/qutebrowser/qutebrowser/releases/download/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	9470bc6786cc1e55ddac64a6f92732ed
+Patch0:		page-focus.patch
 URL:		https://www.qutebrowser.org/
 BuildRequires:	python3 >= 1:3.8.0
 BuildRequires:	python3-setuptools
@@ -240,6 +241,7 @@ qutebrowser userscript: Views the current web page in mpv.
 
 %prep
 %setup -q
+%patch -P0 -p1
 
 grep -r '#!.*env bash' -l . | xargs %{__sed} -i -e '1 s,#!.*env bash.*,#!/bin/bash,'
 grep -r '#!.*env python' -l . | xargs %{__sed} -i -e '1 s,#!.*env python.*,#!%{__python3},'
